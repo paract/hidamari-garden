@@ -1,0 +1,10 @@
+{
+  "name": "BioNFT — Seed（種）",
+  "description": "陽だまりの庭への第一歩。あなたの成長の種が、ここから始まる。",
+  "image": "ipfs://bafybeibfdlwawhojqks3iwld36jcd4wxgclsrjzxvotdvrzj5pr5fvqox4",
+  "attributes": [
+    { "trait_type": "Stage", "value": "0" },
+    { "trait_type": "Stage Name", "value": "Seed" },
+    { "trait_type": "Community", "value": "陽だまりの庭" }
+  ]
+}

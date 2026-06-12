@@ -1,0 +1,10 @@
+{
+  "name": "BioNFT — 新芽（Sprout）",
+  "description": "継続の証。小さな芽が地面を割って顔を出した。",
+  "image": "ipfs://bafybeifl2yxfq74aeoznnx5lnqcllp5zueykbvbw5hc43vmfxcxs3rlr2u",
+  "attributes": [
+    { "trait_type": "Stage", "value": "1" },
+    { "trait_type": "Stage Name", "value": "Sprout" },
+    { "trait_type": "Community", "value": "陽だまりの庭" }
+  ]
+}

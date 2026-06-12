@@ -1,0 +1,10 @@
+{
+  "name": "BioNFT — 大樹（Ancient）",
+  "description": "半年の継続が大樹を育てた。陽だまりの庭の守護者。",
+  "image": "ipfs://bafybeife75uris7x67pptvpi34bghuophlmj3jhvpxpzcncwg36ubgsgdu",
+  "attributes": [
+    { "trait_type": "Stage", "value": "4" },
+    { "trait_type": "Stage Name", "value": "Ancient" },
+    { "trait_type": "Community", "value": "陽だまりの庭" }
+  ]
+}

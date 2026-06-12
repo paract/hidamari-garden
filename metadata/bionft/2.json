@@ -1,0 +1,10 @@
+{
+  "name": "BioNFT — 若木（Vine）",
+  "description": "根を張り、幹を伸ばす。積み重ねた日々が形になってきた。",
+  "image": "ipfs://bafybeidxwgojwosyb53cdkh54fmfvenigirqzq3f44ddukqbdtwzgovvdq",
+  "attributes": [
+    { "trait_type": "Stage", "value": "2" },
+    { "trait_type": "Stage Name", "value": "Vine" },
+    { "trait_type": "Community", "value": "陽だまりの庭" }
+  ]
+}

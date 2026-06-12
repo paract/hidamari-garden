@@ -1,0 +1,80 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// Discord ユーザー ↔ ウォレットアドレスの紐付け
+model User {
+  id            String   @id @default(cuid())
+  discordId     String   @unique
+  walletAddress String   @unique
+  isVerified    Boolean  @default(false)
+  isVip         Boolean  @default(false)
+  exp           Int      @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  rewards DailyReward[]
+}
+
+// 日次合言葉の配布ログ
+model DailyReward {
+  id        String   @id @default(cuid())
+  userId    String
+  date      String
+  txHash    String?
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@unique([userId, date])
+}
+
+// BioNFT 進化ステージ設定
+model EvolutionSettings {
+  level        Int     @id
+  stageName    String
+  requiredAtsc Decimal
+  requiredExp  Int
+}
+
+// Web2.5 ウォレット登録用ワンタイムトークン
+model WalletLinkToken {
+  id        String    @id @default(cuid())
+  token     String    @unique
+  discordId String
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+}
+
+// BioNFT Stripe 購入記録
+// paidAt が null → 未払い / mintedAt が null → mint未完了
+model BioNftPurchase {
+  id              String    @id @default(cuid())
+  stripeSessionId String    @unique
+  walletAddress   String
+  discordId       String?
+  amountJpy       Int
+  paidAt          DateTime?
+  mintedAt        DateTime?
+  mintTxHash      String?
+  createdAt       DateTime  @default(now())
+}
+
+// 日替わり合言葉・スポンサー設定
+model DailyKeyword {
+  id           String   @id @default(cuid())
+  date         String   @unique
+  keyword      String
+  startTime    String   @default("00:00")
+  endTime      String   @default("23:59")
+  sponsorName  String?
+  announcement String?
+  createdAt    DateTime @default(now())
+}

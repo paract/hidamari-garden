@@ -1,0 +1,10 @@
+{
+  "name": "BioNFT — 開花（Bloom）",
+  "description": "花が咲いた。続けてきた時間が、誰かの目に届く存在になった。",
+  "image": "ipfs://bafybeifwbt7fjfgbxyynofawvjvn2d5we2ebqdfe7hfqnrpaq5l2hcnh7m",
+  "attributes": [
+    { "trait_type": "Stage", "value": "3" },
+    { "trait_type": "Stage Name", "value": "Bloom" },
+    { "trait_type": "Community", "value": "陽だまりの庭" }
+  ]
+}

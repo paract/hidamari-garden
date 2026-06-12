@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <defs>
+    <radialGradient id="bg" cx="40%" cy="35%" r="70%">
+      <stop offset="0%" stop-color="#fde68a"/>
+      <stop offset="55%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#b45309"/>
+    </radialGradient>
+    <radialGradient id="inner" cx="40%" cy="35%" r="70%">
+      <stop offset="0%" stop-color="#fffbeb"/>
+      <stop offset="100%" stop-color="#fcd34d"/>
+    </radialGradient>
+  </defs>
+
+  <!-- ベース円（コイン） -->
+  <circle cx="128" cy="128" r="124" fill="url(#bg)"/>
+
+  <!-- 内側の明るい円 -->
+  <circle cx="128" cy="128" r="104" fill="url(#inner)"/>
+
+  <!-- 外枠リング -->
+  <circle cx="128" cy="128" r="124" fill="none" stroke="#92400e" stroke-width="4" opacity="0.4"/>
+  <circle cx="128" cy="128" r="104" fill="none" stroke="#b45309" stroke-width="2" opacity="0.3"/>
+
+  <!-- 太陽の光線（上部） -->
+  <g transform="translate(128,128)" opacity="0.35" stroke="#92400e" stroke-linecap="round" stroke-width="3">
+    <line x1="0" y1="-78" x2="0" y2="-62"/>
+    <line x1="0" y1="-78" x2="0" y2="-62" transform="rotate(45)"/>
+    <line x1="0" y1="-78" x2="0" y2="-62" transform="rotate(90)"/>
+    <line x1="0" y1="-78" x2="0" y2="-62" transform="rotate(135)"/>
+    <line x1="0" y1="-78" x2="0" y2="-62" transform="rotate(180)"/>
+    <line x1="0" y1="-78" x2="0" y2="-62" transform="rotate(225)"/>
+    <line x1="0" y1="-78" x2="0" y2="-62" transform="rotate(270)"/>
+    <line x1="0" y1="-78" x2="0" y2="-62" transform="rotate(315)"/>
+  </g>
+
+  <!-- 中央の太陽マーク -->
+  <circle cx="128" cy="100" r="20" fill="#f59e0b" opacity="0.6"/>
+  <circle cx="128" cy="100" r="12" fill="#fbbf24" opacity="0.9"/>
+
+  <!-- ATSCテキスト -->
+  <text x="128" y="158" text-anchor="middle"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="46" font-weight="bold"
+    fill="#78350f" letter-spacing="2">ATSC</text>
+
+  <!-- 下部の細い線飾り -->
+  <line x1="84" y1="174" x2="172" y2="174" stroke="#b45309" stroke-width="1.5" opacity="0.4"/>
+</svg>

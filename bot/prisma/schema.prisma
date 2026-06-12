@@ -1,0 +1,96 @@
+generator client {
+  provider   = "prisma-client-js"
+  engineType = "binary"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// Discord ユーザー ↔ ウォレットアドレスの紐付け
+model User {
+  id            String   @id @default(cuid())
+  discordId     String   @unique
+  walletAddress String   @unique
+  isVerified    Boolean  @default(false)
+  isVip         Boolean  @default(false)
+  exp           Int      @default(0)     // 貢献ポイント（メッセージ活動で加算）
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  rewards DailyReward[]
+}
+
+// 日次合言葉の配布ログ（1日1回制限に使用）
+model DailyReward {
+  id        String   @id @default(cuid())
+  userId    String
+  date      String   // YYYY-MM-DD 形式
+  txHash    String?
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@unique([userId, date])
+}
+
+// BioNFT 進化ステージ設定（コードを変えずに DB から調整可能）
+model EvolutionSettings {
+  level        Int     @id    // 1〜4
+  stageName    String         // 表示名（例: "新芽 (Sprout)"）
+  requiredAtsc Decimal        // 進化に必要な消費 ATSC 量
+  requiredExp  Int            // 進化に必要な累計 EXP
+}
+
+// Web2.5 ウォレット登録用ワンタイムトークン
+// Bot → Web ページへ誘導する際に発行し、10分で失効する
+model WalletLinkToken {
+  id        String    @id @default(cuid())
+  token     String    @unique              // URL に埋め込む UUID
+  discordId String                         // 誰のリンクか
+  expiresAt DateTime                       // 有効期限（発行から10分）
+  usedAt    DateTime?                      // 使用済みフラグ（null = 未使用）
+  createdAt DateTime  @default(now())
+}
+
+// 🌸リアクションEXP上限管理（1日5回まで）
+model DailyReactionLog {
+  id        String @id @default(cuid())
+  reactorId String // リアクションを押したユーザーの Discord ID
+  date      String // YYYY-MM-DD (JST)
+  count     Int    @default(0)
+
+  @@unique([reactorId, date])
+}
+
+// 月次EXPログ（月ごとの獲得EXPを記録。月次ランキング・エアドロに使用）
+model MonthlyExpLog {
+  id        String @id @default(cuid())
+  discordId String
+  yearMonth String  // "YYYY-MM"
+  exp       Int     @default(0)
+
+  @@unique([discordId, yearMonth])
+}
+
+// システム設定（変換レートなど）
+// Supabase の管理画面から value を変更するだけでコードなしに調整できる
+model SystemSettings {
+  key       String @id    // 設定キー（例: "exp_to_atsc_rate"）
+  value     String        // 設定値（例: "10"）
+  updatedAt DateTime @updatedAt
+}
+
+// 日替わり合言葉・スポンサー設定
+model DailyKeyword {
+  id           String   @id @default(cuid())
+  date         String   @unique // YYYY-MM-DD 形式
+  keyword      String
+  startTime    String   @default("00:00") // 受付開始時刻 HH:mm（JST）
+  endTime      String   @default("23:59") // 受付終了時刻 HH:mm（JST）
+  sponsorName  String?
+  announcement String?
+  createdAt    DateTime @default(now())
+}

@@ -1,0 +1,12 @@
+# 環境変数（絶対にコミットしない）
+.env
+.env.*
+
+# 依存パッケージ（npm install で再生成できる）
+node_modules/
+
+# Prisma 生成ファイル（prisma generate で再生成できる）
+node_modules/.prisma/
+
+# macOS システムファイル
+.DS_Store

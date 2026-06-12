@@ -1,0 +1,21 @@
+# 環境変数（実値）は絶対にコミットしない
+.env
+.env.*
+!.env.example
+
+# 依存・ビルド成果物
+node_modules/
+.next/
+.vercel/
+dist/
+
+# DB ファイル
+*.db
+*.db-journal
+
+# Hardhat
+cache/
+artifacts/
+
+# OS
+.DS_Store
