@@ -139,6 +139,7 @@
 
 「自分のコミュニティにも似た仕組みがほしい」などのご相談は、お気軽にどうぞ：
 
+- X: https://x.com/wsolver8
 - note: https://note.com/paracter/portal
 - Substack: https://paracter7.substack.com
 - サイト: https://atsc-hidamari.vercel.app/lp
